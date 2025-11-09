@@ -1,12 +1,11 @@
-// src/pages/Expenses.jsx
 import { useState, useEffect } from "react";
-import Sidebar from "../components/Sidebar.jsx";
+import Sidebar from "../components/utils/Sidebar.jsx";
 import { useAuth } from "../context/AuthProvider.jsx";
-import ExpenseSummaryCards from "../components/ExpenseSummaryCards.jsx";
-import ExpensesPieChart from "../components/ExpensesPieChart.jsx";
-import AddExpenseWidget from "../components/AddExpenseWidget.jsx";
+import ExpensesLineChart from "../components/expenses/ExpensesLineChart.jsx";
+import ExpensesPieChart from "../components/expenses/ExpensesPieChart.jsx";
+import AddExpenseWidget from "../components/expenses/AddExpenseWidget.jsx";
+import ExpenseSummaryCards from "../components/expenses/ExpenseSummaryCards.jsx";
 import api from "../api/axios.js";
-import ExpensesLineChart from "../components/ExpensesLineChart.jsx";
 
 const Expenses = () => {
   const { user } = useAuth();

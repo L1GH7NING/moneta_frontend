@@ -1,5 +1,5 @@
 import React from "react";
-import MonetaLogo from "../assets/MonetaCropped.png";
+import MonetaLogo from "../../assets/MonetaCropped.png";
 
 function Footer() {
   return (

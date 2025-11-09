@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { TrendingUp, DollarSign, PieChart, Bell, Target, Zap, ArrowRight, LineChart, Shield, CreditCard, Smartphone} from 'lucide-react';
-import NavbarHome from '../components/NavbarHome';
-import FeatureCard from '../components/FeatureCard';
-import Footer from '../components/Footer';
+import NavbarHome from '../components/home/NavbarHome';
+import FeatureCard from '../components/home/FeatureCard';
+import Footer from '../components/home/Footer';
 import { Link } from 'react-router-dom';
 
 export default function Home() {
@@ -227,40 +227,10 @@ export default function Home() {
               description="Get notified about bills, budget limits, and unusual spending instantly."
               delay={300}
             />
-            {/* <FeatureCard
-              icon={Shield}
-              title="Bank-level Security"
-              description="Your financial data is encrypted and protected with industry-leading security."
-              delay={400}
-            />
-            <FeatureCard
-              icon={Smartphone}
-              title="Multi-platform"
-              description="Access your finances anywhere with our web, iOS, and Android apps."
-              delay={500}
-            />
-            <FeatureCard
-              icon={CreditCard}
-              title="Card Management"
-              description="Track all your cards in one place and manage subscriptions effortlessly."
-              delay={600}
-            /> */}
           </div>
         </div>
       </section>
 
-      {/* <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div>
-          <h1 className='text-3xl md:text-4xl font-bold text-center text-gray-900 leading-tight animate-fade-in'>
-            Empowering Your Financial Journey, One Smart Budget at a Time.
-          </h1>
-        </div>
-        <div className='grid grid-cols-2 md:grid-cols-3 gap-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20'>
-              <div className='border-l-4 border-orange-500 pl-4 w-full'>
-                Hello
-              </div>
-        </div>
-      </div> */}
 
       {/* CTA Section */}
       <section className="py-20 px-6">

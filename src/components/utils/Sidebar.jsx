@@ -1,21 +1,19 @@
-// src/components/SidebarTest.jsx
-
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   LayoutDashboard,
-  Repeat,
   Wallet,
   PieChart,
   Settings,
-  // Removed unused icons like Menu, LogOut, ChevronsRight, but keeping LogOut for the button
+  Receipt,
+  LayoutGrid,
   LogOut,
   ChevronsRight,
   Home,
 } from "lucide-react";
-import api from "../api/axios";
-import { useAuth } from "../context/AuthProvider";
-import MonetaLogo from "../assets/MonetaCropped.png";
+import api from "../../api/axios";
+import { useAuth } from "../../context/AuthProvider";
+import MonetaLogo from "../../assets/MonetaCropped.png";
 import ConfirmationModal from "./ConfirmationModal";
 
 const commonIconProps = {
@@ -25,10 +23,11 @@ const commonIconProps = {
 
 const navLinks = [
   { icon: LayoutDashboard, text: "Dashboard", path: "/dashboard" },
-  { icon: Repeat, text: "Expenses", path: "/expenses" },
   { icon: Wallet, text: "Budgets", path: "/budgets" },
-  { icon: PieChart, text: "Reports", path: "/reports" },
-  { icon: Settings, text: "Settings", path: "/settings" },
+  { icon: Receipt, text: "Expenses", path: "/expenses" },
+  { icon: LayoutGrid, text: "Categories", path: "/categories" },
+  { icon: PieChart, text: "Reports", path: "/" },
+  { icon: Settings, text: "Settings", path: "/" },
   { icon: Home, text: "Home", path: "/home" }
 ];
 
@@ -200,11 +199,11 @@ const Sidebar = () => {
 
         {/* Logout button at the bottom - only on desktop */}
         {!isMobile && (
-          <div className="mt-auto border-t border-gray-200 pt-4">
+          <div className="mt-auto mb-6 pt-4">
             <button
               onClick={() => setIsLogoutModalOpen(true)}
               className={`
-                w-full flex items-center rounded-md transition-all duration-300 cursor-pointer
+                w-full flex items-center rounded-md bg-transparent transition-all duration-300 cursor-pointer
                 text-red-600 hover:bg-red-50
                 ${isSidebarOpen ? "py-3 px-4 gap-4" : "py-3 justify-center"}
               `}

@@ -1,8 +1,8 @@
 // src/components/AddCategoryModal.jsx
 import React, { useState, useMemo } from "react";
-import api from "../api/axios.js";
+import api from "../../api/axios.js";
 import { X, Sparkles, Plus, Trash2 } from "lucide-react";
-import { RECOMMENDED_CATEGORIES } from "../constants/categories.js";
+import { RECOMMENDED_CATEGORIES } from "../../constants/categories.js";
 
 const AddCategoryModal = ({
   user,

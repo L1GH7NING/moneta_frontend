@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import Sidebar from "../components/Sidebar.jsx";
+import Sidebar from "../components/utils/Sidebar.jsx";
 import { useAuth } from "../context/AuthProvider.jsx";
 import api from '../api/axios.js';
 import { useNavigate } from "react-router-dom";
-import ConfirmationModal from "../components/ConfirmationModal.jsx";
-import RecentExpensesWidget from "../components/RecentExpensesWidget.jsx";
-import SpendingTrendsWidget from "../components/SpendingTrendsWidget.jsx";
+import ConfirmationModal from "../components/utils/ConfirmationModal.jsx";
+import RecentExpensesWidget from "../components/dashboard/RecentExpensesWidget.jsx";
+import TopCategoriesWidget from "../components/dashboard/TopCategoriesWidget.jsx";
 
 const Dashboard = () => {
   const { user, setUser } = useAuth();
@@ -85,12 +85,10 @@ const Dashboard = () => {
           </div>
         </header>
 
-        {/* --- DASHBOARD WIDGETS CONTAINER --- */}
-        {/* This container now controls the layout for all widgets inside it */}
         <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
 
-          {/* Widget 1 - Spending Trends */}
-          <SpendingTrendsWidget />
+          {/* Widget 1 - Top categories */}
+          <TopCategoriesWidget />
 
           {/* Widget 2 - Recent Expenses */}
           <RecentExpensesWidget />

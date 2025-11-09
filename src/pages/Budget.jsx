@@ -1,43 +1,28 @@
 // src/pages/Budget.jsx
-import React, { useState, useRef } from "react"; 
-import Sidebar from "../components/Sidebar.jsx";
+import React, { useState } from "react";
+import Sidebar from "../components/utils/Sidebar.jsx";
 import { useAuth } from "../context/AuthProvider.jsx";
-import { useNavigate } from "react-router-dom";
-import CategoryList from "../components/CategoryList.jsx";
-import AddCategoryModal from "../components/AddCategoryModal.jsx";
-import BudgetPieChart from "../components/BudgetPieChart.jsx";
+import BudgetList from "../components/budgets/BudgetList.jsx";
+import AddCategoryModal from "../components/utils/AddCategoryModal.jsx";
+import BudgetPieChart from "../components/budgets/BudgetPieChart.jsx";
+import { useBudgetData } from "../hooks/useBudgetData.js";
+import { Loader2 } from "lucide-react";
 
 const Budget = () => {
   const { user, setUser } = useAuth();
-  const navigate = useNavigate();
+  const [isAdding, setIsAdding] = useState(false);
 
-  // STATE
-  const [categories, setCategories] = useState([]); 
-  const [isAdding, setIsAdding] = useState(false); 
-  const [budgetRefreshTrigger, setBudgetRefreshTrigger] = useState(0);
+  const { data, isLoading, error, refetch } = useBudgetData(user);
 
-  const categoryListRef = useRef(null);
-
-  const handleCategoriesUpdate = (newCategories) => {
-    setCategories(newCategories);
-  };
-
-  const handleBudgetUpdate = () => {
-    setBudgetRefreshTrigger(prev => prev + 1);
-  };
-  
   const handleModalSuccess = () => {
-      setIsAdding(false);
-      
-      if (categoryListRef.current && categoryListRef.current.refetch) {
-          categoryListRef.current.refetch(); 
-      }
+    setIsAdding(false);
+    refetch();
   };
 
   const handleUserUpdate = (updatedUserData) => {
-      if (setUser) {
-          setUser(updatedUserData); 
-      }
+    if (setUser) {
+      setUser(updatedUserData);
+    }
   };
 
   return (
@@ -47,36 +32,49 @@ const Budget = () => {
       <main className="flex-1 p-6 pb-16">
         <header className="mb-8 flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-gray-800">
-              Budget Planner
-            </h1>
-            <p className="text-gray-600 mt-1">Add and manage your spending categories</p>
+            <h1 className="text-3xl font-bold text-gray-800">Budget Planner</h1>
+            <p className="text-gray-600 mt-1">
+              Add and manage your spending categories
+            </p>
           </div>
         </header>
 
-        <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div className="bg-white rounded-lg shadow-lg p-6 lg:col-span-2 flex flex-col items-center">
-            <BudgetPieChart categories={categories} refreshTrigger={budgetRefreshTrigger} />
+        {isLoading ? (
+          <div className="flex items-center justify-center h-96">
+            <Loader2 className="w-12 h-12 animate-spin text-orange-500" />
           </div>
+        ) : error ? (
+          <div className="text-center text-red-600 bg-red-100 p-4 rounded-lg">
+            <p>{error}</p>
+          </div>
+        ) : (
+          <div className="w-full max-w-7xl grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="bg-white rounded-lg shadow-lg p-6 lg:col-span-2 flex flex-col items-center min-h-[36rem]">
+              <BudgetPieChart
+                categories={data.categories}
+                budgets={data.budgets}
+              />
+            </div>
 
-          <CategoryList 
-            ref={categoryListRef} 
-            user={user}
-            isAdding={isAdding}
-            setIsAdding={setIsAdding}
-            onCategoriesUpdate={handleCategoriesUpdate} 
-            onUserUpdate={handleUserUpdate}
-            onBudgetUpdate={handleBudgetUpdate}
-          />
-        </div>
+            <BudgetList
+              user={user}
+              isAdding={isAdding}
+              setIsAdding={setIsAdding}
+              categories={data.categories}
+              initialBudgets={data.budgets}
+              onUserUpdate={handleUserUpdate}
+              onUpdate={refetch}
+            />
+          </div>
+        )}
       </main>
 
-      <AddCategoryModal 
+      <AddCategoryModal
         user={user}
         isOpen={isAdding}
-        onClose={() => setIsAdding(false)} 
-        onSuccess={handleModalSuccess} 
-        existingCategories={categories}
+        onClose={() => setIsAdding(false)}
+        onSuccess={handleModalSuccess}
+        existingCategories={data.categories}
       />
     </div>
   );

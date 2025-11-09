@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { DollarSign, Menu, X } from "lucide-react";
-import MonetaLogo from "../assets/MonetaCropped.png";
+import MonetaLogo from "../../assets/MonetaCropped.png";
 import { Link } from "react-router-dom";
 
 const NavbarHome = () => {

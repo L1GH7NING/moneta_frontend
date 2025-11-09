@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import api from '../api/axios.js';
-import { CATEGORY_COLORS, CATEGORY_ICONS } from '../constants/categories.js';
+import api from "../../api/axios.js";
+import { CATEGORY_ICONS, CATEGORY_COLORS } from "../../constants/categories.js";
 
 const RecentExpensesWidget = () => {
   const [recentExpenses, setRecentExpenses] = useState([]);

@@ -1,7 +1,5 @@
-// src/components/ExpenseSummaryCards.jsx
 import React, { useMemo } from "react";
-// 1. Import the category colors constant
-import { CATEGORY_COLORS } from "../constants/categories";
+import { CATEGORY_COLORS } from "../../constants/categories";
 
 const ExpenseSummaryCards = ({ monthlyTotal, budgets, categoryExpensesData, loading }) => {
 

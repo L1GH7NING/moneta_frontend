@@ -1,6 +1,6 @@
 import { Plus } from "lucide-react";
 
-export function CategoryListHeader({
+export function BudgetListHeader({
   user,
   isLoading,
   isAdding,
@@ -20,7 +20,7 @@ export function CategoryListHeader({
           onClick={onAddCategory}
           disabled={!user || isLoading || isAdding}
           title="Add New Category"
-          className="flex items-center justify-center bg-orange-500 text-white rounded-full hover:bg-orange-600 transition duration-200 ease-in-out shadow-md disabled:bg-gray-400 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
+          className="flex items-center justify-center bg-orange-500 text-white rounded-full p-2 hover:bg-orange-600 transition duration-200 ease-in-out shadow-md disabled:bg-gray-400 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
         >
           <Plus className="w-5 h-5" />
         </button>
